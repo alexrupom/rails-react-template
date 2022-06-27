@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module BasicTemplate
+module AppNamePlaceholder
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -21,7 +21,7 @@ module BasicTemplate
     if Rails.env.staging? || Rails.env.production?
       config.rails_semantic_logger.add_file_appender = false
       config.rails_semantic_logger.format = :json
-      config.semantic_logger.application = 'BasicTemplate'
+      config.semantic_logger.application = 'AppNamePlaceholder'
       config.semantic_logger.add_appender(io: $stdout,
                                           level: config.log_level,
                                           formatter: config.rails_semantic_logger.format)

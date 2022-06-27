@@ -10,16 +10,16 @@ default: &default
 
 test:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_test') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'app_name_placeholder_test') %>
 
 development:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_development') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'app_name_placeholder_development') %>
 
 staging:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_staging') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'app_name_placeholder_staging') %>
 
 production:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_production') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'app_name_placeholder_production') %>

@@ -1,5 +1,5 @@
 {
-  "name": "basic_template",
+  "name": "app_name_placeholder",
   "dependencies": {
     "@rails/webpacker": "5.2.1",
     "bootstrap": "^4.6.0",

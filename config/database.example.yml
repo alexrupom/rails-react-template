@@ -5,14 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: basic_template_development
+  database: app_name_placeholder_development
 
 test:
   <<: *default
-  database: basic_template_test
+  database: app_name_placeholder_test
 
 production:
   <<: *default
-  database: basic_template_production
-  username: basic_template
-  password: <%= ENV['basic_template_DATABASE_PASSWORD'] %>
+  database: app_name_placeholder_production
+  username: app_name_placeholder
+  password: <%= ENV['app_name_placeholder_DATABASE_PASSWORD'] %>
