@@ -1,0 +1,36 @@
+name: Tests
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: test
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: 'test'
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          rubygems: 'latest'
+          bundler-cache: true
+      - name: Create DB
+        env:
+          DATABASE_URL: postgres://test:test@localhost/test
+          RAILS_ENV: test
+        run: |
+          bin/rails db:prepare
+      - name: Run tests
+        env:
+         DATABASE_URL: postgres://test:test@localhost/test
+         RAILS_ENV: test
+        run: |
+         bundle exec rspec --profile 10 \
+                           --format RspecJunitFormatter \
+                           --out /tmp/test-results/rspec.xml \
+                           --format progress

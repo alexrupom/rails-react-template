@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Greeting renders component 1`] = `
+<div
+  className="col-grid"
+>
+  <div
+    className="col-12"
+  >
+    <Alert
+      className="greeting__name"
+      closeLabel="Close alert"
+      show={true}
+      transition={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "appear": false,
+            "in": false,
+            "mountOnEnter": false,
+            "timeout": 300,
+            "unmountOnExit": false,
+          },
+          "displayName": "Fade",
+          "render": [Function],
+        }
+      }
+      variant="primary"
+    >
+      Hello 
+      John Doe
+    </Alert>
+  </div>
+</div>
+`;

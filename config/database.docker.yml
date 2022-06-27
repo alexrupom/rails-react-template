@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV['DATABASE_POOL'] || ENV['RAILS_MAX_THREADS'] || 5 %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  prepared_statements: false
+
+test:
+  <<: *default
+  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_test') %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_development') %>
+
+staging:
+  <<: *default
+  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_staging') %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch('DATABASE_NAME', 'basic_template_production') %>
