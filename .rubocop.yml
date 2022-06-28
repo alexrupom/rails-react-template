@@ -166,7 +166,7 @@ Metrics/PerceivedComplexity:
     reader.
   Enabled: true
   Max: 7
-Metrics/LineLength:
+Layout/LineLength:
   Max: 110
   AllowHeredoc: true
   AllowURI: true
