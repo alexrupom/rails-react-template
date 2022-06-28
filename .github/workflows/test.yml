@@ -1,7 +1,8 @@
 name: Tests
 on: [push]
 jobs:
-  test:
+  ruby:
+    name: Rspec
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -23,8 +24,7 @@ jobs:
         env:
           DATABASE_URL: postgres://test:test@localhost/test
           RAILS_ENV: test
-        run: |
-          bin/rails db:prepare
+        run: bin/rails db:prepare
       - name: Run tests
         env:
          DATABASE_URL: postgres://test:test@localhost/test
@@ -34,3 +34,26 @@ jobs:
                            --format RspecJunitFormatter \
                            --out /tmp/test-results/rspec.xml \
                            --format progress
+  javascript:
+    name: Jest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .node-version
+      - name: Install yarn
+        run: npm install -g yarn
+      - name: Yarn cache
+        id: yarn-cache 
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install Dependencies
+        run: yarn install
+      - name: Run Tests
+        run: yarn run test:ci
